@@ -26,8 +26,11 @@ const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
   },
 });
 
+import { RssesModule } from './rsses/rsses.module';
+
 @Module({
   imports: [
+    RssesModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [databaseConfig, authConfig, appConfig, mailConfig, fileConfig],

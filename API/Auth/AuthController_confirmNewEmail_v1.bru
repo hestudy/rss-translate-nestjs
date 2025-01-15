@@ -1,0 +1,17 @@
+meta {
+  name: AuthController_confirmNewEmail_v1
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/v1/auth/email/confirm/new
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "hash": ""
+  }
+}

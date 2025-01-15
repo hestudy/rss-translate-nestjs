@@ -1,0 +1,19 @@
+meta {
+  name: RssesController_findById_v1
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/rsses/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

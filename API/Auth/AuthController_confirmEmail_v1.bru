@@ -1,0 +1,17 @@
+meta {
+  name: AuthController_confirmEmail_v1
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/v1/auth/email/confirm
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "hash": ""
+  }
+}

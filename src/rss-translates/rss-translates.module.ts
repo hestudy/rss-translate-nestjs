@@ -5,6 +5,7 @@ import { RelationalRssTranslatePersistenceModule } from './infrastructure/persis
 import { RssTranslatesConsumer } from './rss-translates.consumer';
 import { RssTranslatesController } from './rss-translates.controller';
 import { RssTranslatesService } from './rss-translates.service';
+import { TranslateService } from './translate.service';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { RssTranslatesService } from './rss-translates.service';
     RelationalRssTranslatePersistenceModule,
   ],
   controllers: [RssTranslatesController],
-  providers: [RssTranslatesService, RssTranslatesConsumer],
+  providers: [RssTranslatesService, RssTranslatesConsumer, TranslateService],
   exports: [RssTranslatesService, RelationalRssTranslatePersistenceModule],
 })
 export class RssTranslatesModule {}

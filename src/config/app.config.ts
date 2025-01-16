@@ -47,6 +47,19 @@ class EnvironmentVariablesValidator {
   @IsString()
   @IsOptional()
   APP_HEADER_LANGUAGE: string;
+
+  @IsString()
+  OPENAI_MODEL: string;
+
+  @IsString()
+  OPENAI_APIKEY: string;
+
+  @IsString()
+  TRANSLATE_LANGUAGE: string;
+
+  @IsString()
+  @IsOptional()
+  OPENAI_BASEURL: string;
 }
 
 export default registerAs<AppConfig>('app', () => {

@@ -25,6 +25,12 @@ DATABASE_URL=
 # Required!!
 REDIS_URL=
 
+# OPENAI
+OPENAI_MODEL=gpt-3.5-turbo
+OPENAI_APIKEY=
+OPENAI_BASEURL=
+TRANSLATE_LANGUAGE=zh-CN
+
 # Support "local", "s3", "s3-presigned"
 FILE_DRIVER=local
 ACCESS_KEY_ID=

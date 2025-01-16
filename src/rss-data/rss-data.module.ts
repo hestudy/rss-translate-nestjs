@@ -14,6 +14,9 @@ import { BullModule } from '@nestjs/bullmq';
     BullModule.registerQueue({
       name: 'rssData',
     }),
+    BullModule.registerQueue({
+      name: 'rssTranslate',
+    }),
     RelationalRssDataPersistenceModule,
   ],
   controllers: [RssDataController],

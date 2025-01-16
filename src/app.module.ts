@@ -35,8 +35,6 @@ import { RssTranslatesModule } from './rss-translates/rss-translates.module';
 
 @Module({
   imports: [
-    RssTranslatesModule,
-    RssDataModule,
     BullModule.forRoot({
       connection: {
         url: process.env.REDIS_URL,
@@ -79,6 +77,8 @@ import { RssTranslatesModule } from './rss-translates/rss-translates.module';
     MailerModule,
     HomeModule,
     RssesModule,
+    RssTranslatesModule,
+    RssDataModule,
   ],
 })
 export class AppModule {}

@@ -1,14 +1,16 @@
-import { RssDataService } from '../rss-data/rss-data.service';
 import { RssData } from '../rss-data/domain/rss-data';
+import { RssDataService } from '../rss-data/rss-data.service';
 
 import { HttpStatus, UnprocessableEntityException } from '@nestjs/common';
 
+import { InjectQueue } from '@nestjs/bullmq';
 import { Injectable } from '@nestjs/common';
+import { Queue } from 'bullmq';
+import { IPaginationOptions } from '../utils/types/pagination-options';
+import { RssTranslate } from './domain/rss-translate';
 import { CreateRssTranslateDto } from './dto/create-rss-translate.dto';
 import { UpdateRssTranslateDto } from './dto/update-rss-translate.dto';
 import { RssTranslateRepository } from './infrastructure/persistence/rss-translate.repository';
-import { IPaginationOptions } from '../utils/types/pagination-options';
-import { RssTranslate } from './domain/rss-translate';
 
 @Injectable()
 export class RssTranslatesService {
@@ -17,6 +19,7 @@ export class RssTranslatesService {
 
     // Dependencies here
     private readonly rssTranslateRepository: RssTranslateRepository,
+    @InjectQueue('rssTranslate') private rssTranslateQueue: Queue,
   ) {}
 
   async create(createRssTranslateDto: CreateRssTranslateDto) {
@@ -104,5 +107,22 @@ export class RssTranslatesService {
 
   remove(id: RssTranslate['id']) {
     return this.rssTranslateRepository.remove(id);
+  }
+
+  async testQueue() {
+    const result = await this.rssDataService.findAllWithPagination({
+      paginationOptions: {
+        limit: 10,
+        page: 1,
+      },
+    });
+    await this.rssTranslateQueue.add('rssTranslate', result.at(0), {
+      jobId: result.at(0)?.id,
+      removeOnComplete: true,
+      removeOnFail: true,
+    });
+    return {
+      success: true,
+    };
   }
 }

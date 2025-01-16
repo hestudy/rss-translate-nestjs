@@ -1,17 +1,15 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
-  UseGuards,
+  Get,
+  Param,
+  Patch,
+  Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
-import { RssTranslatesService } from './rss-translates.service';
-import { CreateRssTranslateDto } from './dto/create-rss-translate.dto';
-import { UpdateRssTranslateDto } from './dto/update-rss-translate.dto';
+import { AuthGuard } from '@nestjs/passport';
 import {
   ApiBearerAuth,
   ApiCreatedResponse,
@@ -19,14 +17,16 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
-import { RssTranslate } from './domain/rss-translate';
-import { AuthGuard } from '@nestjs/passport';
 import {
   InfinityPaginationResponse,
   InfinityPaginationResponseDto,
 } from '../utils/dto/infinity-pagination-response.dto';
 import { infinityPagination } from '../utils/infinity-pagination';
+import { RssTranslate } from './domain/rss-translate';
+import { CreateRssTranslateDto } from './dto/create-rss-translate.dto';
 import { FindAllRssTranslatesDto } from './dto/find-all-rss-translates.dto';
+import { UpdateRssTranslateDto } from './dto/update-rss-translate.dto';
+import { RssTranslatesService } from './rss-translates.service';
 
 @ApiTags('Rsstranslates')
 @ApiBearerAuth()
@@ -68,6 +68,11 @@ export class RssTranslatesController {
       }),
       { page, limit },
     );
+  }
+
+  @Get('testQueue')
+  testQueue() {
+    return this.rssTranslatesService.testQueue();
   }
 
   @Get(':id')

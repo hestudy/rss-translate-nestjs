@@ -24,4 +24,6 @@ export abstract class RssDataRepository {
   ): Promise<RssData | null>;
 
   abstract remove(id: RssData['id']): Promise<void>;
+
+  abstract hasRssData(link: string): Promise<boolean>;
 }

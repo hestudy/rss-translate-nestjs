@@ -76,4 +76,13 @@ export class RssDataRelationalRepository implements RssDataRepository {
   async remove(id: RssData['id']): Promise<void> {
     await this.rssDataRepository.delete(id);
   }
+
+  async hasRssData(link: string): Promise<boolean> {
+    const result = await this.rssDataRepository.count({
+      where: {
+        link,
+      },
+    });
+    return result > 0;
+  }
 }

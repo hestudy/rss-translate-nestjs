@@ -28,6 +28,8 @@ export class RssesService {
     });
     await this.rssQueue.add('rss', result, {
       jobId: result.id,
+      removeOnComplete: true,
+      removeOnFail: true,
     });
 
     return result;

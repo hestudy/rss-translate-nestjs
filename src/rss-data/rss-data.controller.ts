@@ -70,6 +70,11 @@ export class RssDataController {
     );
   }
 
+  @Get('testQueue')
+  testQueue() {
+    return this.rssDataService.testQueue();
+  }
+
   @Get(':id')
   @ApiParam({
     name: 'id',

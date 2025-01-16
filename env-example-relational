@@ -22,6 +22,9 @@ DATABASE_KEY=
 DATABASE_CERT=
 DATABASE_URL=
 
+# Required!!
+REDIS_URL=
+
 # Support "local", "s3", "s3-presigned"
 FILE_DRIVER=local
 ACCESS_KEY_ID=

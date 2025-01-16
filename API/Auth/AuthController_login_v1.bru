@@ -16,3 +16,10 @@ body:json {
     "password": "secret"
   }
 }
+
+script:post-response {
+  const token = res.body.token
+  if(token){
+    bru.setEnvVar("token",token)
+  }
+}

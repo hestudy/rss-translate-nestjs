@@ -26,11 +26,7 @@ export class RssesService {
 
       link: createRssDto.link,
     });
-    await this.rssQueue.add('rss', result);
     await this.rssQueue.add('rss', result, {
-      repeat: {
-        every: 1000 * 60 * 60,
-      },
       jobId: result.id,
     });
 

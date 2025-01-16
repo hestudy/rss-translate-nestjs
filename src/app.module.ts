@@ -29,8 +29,11 @@ const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
 import { BullModule } from '@nestjs/bullmq';
 import { RssesModule } from './rsses/rsses.module';
 
+import { RssDataModule } from './rss-data/rss-data.module';
+
 @Module({
   imports: [
+    RssDataModule,
     BullModule.forRoot({
       connection: {
         url: process.env.REDIS_URL,

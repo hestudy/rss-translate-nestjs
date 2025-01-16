@@ -31,8 +31,11 @@ import { RssesModule } from './rsses/rsses.module';
 
 import { RssDataModule } from './rss-data/rss-data.module';
 
+import { RssTranslatesModule } from './rss-translates/rss-translates.module';
+
 @Module({
   imports: [
+    RssTranslatesModule,
     RssDataModule,
     BullModule.forRoot({
       connection: {

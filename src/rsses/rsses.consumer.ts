@@ -32,7 +32,7 @@ export class RssConsumer extends WorkerHost {
       data: feed,
     });
     this.logger.debug(`更新rss成功: ${job.data.link}`);
-    this.rssDataQueue.add('rssData', result, {
+    await this.rssDataQueue.add('rssData', result, {
       jobId: result?.id,
     });
   }

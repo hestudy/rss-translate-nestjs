@@ -3,6 +3,12 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class RssTranslate {
   @ApiProperty({
+    type: () => String,
+    nullable: false,
+  })
+  link: string;
+
+  @ApiProperty({
     type: () => RssData,
     nullable: false,
   })

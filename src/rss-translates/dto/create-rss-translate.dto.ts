@@ -22,6 +22,13 @@ import {
 export class CreateRssTranslateDto {
   @ApiProperty({
     required: true,
+    type: () => String,
+  })
+  @IsString()
+  link: string;
+
+  @ApiProperty({
+    required: true,
     type: () => RssDataDto,
   })
   @ValidateNested()

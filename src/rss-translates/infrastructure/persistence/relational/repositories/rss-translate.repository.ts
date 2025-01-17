@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, In } from 'typeorm';
-import { RssTranslateEntity } from '../entities/rss-translate.entity';
+import { In, Repository } from 'typeorm';
 import { NullableType } from '../../../../../utils/types/nullable.type';
+import { IPaginationOptions } from '../../../../../utils/types/pagination-options';
 import { RssTranslate } from '../../../../domain/rss-translate';
 import { RssTranslateRepository } from '../../rss-translate.repository';
+import { RssTranslateEntity } from '../entities/rss-translate.entity';
 import { RssTranslateMapper } from '../mappers/rss-translate.mapper';
-import { IPaginationOptions } from '../../../../../utils/types/pagination-options';
 
 @Injectable()
 export class RssTranslateRelationalRepository
@@ -80,5 +80,15 @@ export class RssTranslateRelationalRepository
 
   async remove(id: RssTranslate['id']): Promise<void> {
     await this.rssTranslateRepository.delete(id);
+  }
+
+  async hasLink(link: string): Promise<boolean> {
+    const count = await this.rssTranslateRepository.count({
+      where: {
+        link,
+      },
+    });
+
+    return count > 0;
   }
 }

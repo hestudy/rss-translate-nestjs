@@ -15,6 +15,12 @@ import { EntityRelationalHelper } from '../../../../../utils/relational-entity-h
   name: 'rss_translate',
 })
 export class RssTranslateEntity extends EntityRelationalHelper {
+  @Column({
+    nullable: false,
+    type: String,
+  })
+  link: string;
+
   @OneToOne(() => RssDataEntity, { eager: true, nullable: false })
   @JoinColumn()
   rssData: RssDataEntity;

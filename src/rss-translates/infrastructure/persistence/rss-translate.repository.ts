@@ -26,4 +26,6 @@ export abstract class RssTranslateRepository {
   ): Promise<RssTranslate | null>;
 
   abstract remove(id: RssTranslate['id']): Promise<void>;
+
+  abstract hasLink(link: string): Promise<boolean>;
 }

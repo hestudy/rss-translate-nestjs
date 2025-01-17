@@ -5,6 +5,7 @@ import { RelationalRssDataPersistenceModule } from './infrastructure/persistence
 import { RssDataConsumer } from './rss-data.consumer';
 import { RssDataController } from './rss-data.controller';
 import { RssDataService } from './rss-data.service';
+import { InsertRssDataConsumer } from './insert-rss-data.consumer';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { RssDataService } from './rss-data.service';
     RelationalRssDataPersistenceModule,
   ],
   controllers: [RssDataController],
-  providers: [RssDataService, RssDataConsumer],
+  providers: [RssDataService, RssDataConsumer, InsertRssDataConsumer],
   exports: [RssDataService, RelationalRssDataPersistenceModule],
 })
 export class RssDataModule {}

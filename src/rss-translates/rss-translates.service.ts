@@ -25,6 +25,7 @@ export class RssTranslatesService {
   async create(createRssTranslateDto: CreateRssTranslateDto) {
     // Do not remove comment below.
     // <creating-property />
+
     const rssDataObject = await this.rssDataService.findById(
       createRssTranslateDto.rssData.id,
     );
@@ -41,6 +42,8 @@ export class RssTranslatesService {
     return this.rssTranslateRepository.create({
       // Do not remove comment below.
       // <creating-property-payload />
+      link: createRssTranslateDto.link,
+
       rssData,
 
       content: createRssTranslateDto.content,
@@ -77,6 +80,7 @@ export class RssTranslatesService {
   ) {
     // Do not remove comment below.
     // <updating-property />
+
     let rssData: RssData | undefined = undefined;
 
     if (updateRssTranslateDto.rssData) {
@@ -97,6 +101,8 @@ export class RssTranslatesService {
     return this.rssTranslateRepository.update(id, {
       // Do not remove comment below.
       // <updating-property-payload />
+      link: updateRssTranslateDto.link,
+
       rssData,
 
       content: updateRssTranslateDto.content,
@@ -124,5 +130,9 @@ export class RssTranslatesService {
     return {
       success: true,
     };
+  }
+
+  hasLink(link: string) {
+    return this.rssTranslateRepository.hasLink(link);
   }
 }
